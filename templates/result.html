@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Your personalized AI Career Path results - Career roadmap, growth projections, and resources.">
+    <title>Your Career Path Results | AI Career Path Simulator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">🚀</div>
+                <span class="logo-text">CareerPath AI</span>
+            </a>
+            <div class="nav-actions">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <div class="theme-toggle-icons">
+                        <span>☀️</span>
+                        <span>🌙</span>
+                    </div>
+                    <div class="theme-toggle-slider"></div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+        <div class="dashboard-container">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">🎯 Your Career Intelligence Report</h1>
+                <p class="dashboard-subtitle">Personalized recommendations based on your profile</p>
+            </div>
+
+            <!-- Top Row Cards -->
+            <div class="dashboard-grid stagger-children">
+                <!-- Profile Summary -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">👤</div>
+                        <h3 class="card-title">Profile Summary</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            <li><b>Skills:</b> {{ skills }}</li>
+                            <li><b>Interests:</b> {{ interest }}</li>
+                            <li><b>Goal:</b> {{ goal }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Recommended Career -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">💼</div>
+                        <h3 class="card-title">Recommended Career</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="career-badge">{{ career }}</div>
+                        <p class="career-description">
+                            {% if career == 'Data Scientist' %}
+                            Perfect for data-driven analysis, statistical modeling & machine learning
+                            {% elif career == 'Full Stack Developer' %}
+                            Build modern web applications from frontend to backend
+                            {% elif career == 'AI / ML Engineer' %}
+                            Create intelligent systems, neural networks & AI models
+                            {% elif career == 'Business Analyst' %}
+                            Bridge business needs with data-driven insights
+                            {% elif career == 'Cybersecurity Analyst' %}
+                            Protect systems from cyber threats & secure digital infrastructure
+                            {% elif career == 'Cloud/DevOps Engineer' %}
+                            Build & manage scalable cloud infrastructure & CI/CD pipelines
+                            {% elif career == 'Mobile App Developer' %}
+                            Create native & cross-platform mobile applications
+                            {% else %}
+                            Versatile software development expert with broad capabilities
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Growth Projection -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">📈</div>
+                        <h3 class="card-title">Growth Projection</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="chart-container">
+                            <canvas id="growthChart"></canvas>
+                        </div>
+                        <div class="salary-range" id="salaryRange">Loading...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Career Roadmap -->
+            <div class="roadmap-section">
+                <h3 class="roadmap-title">
+                    <span>🗺️</span>
+                    Career Advancement Roadmap
+                </h3>
+                <div class="roadmap-timeline">
+                    {% for step in roadmap %}
+                    <div class="roadmap-step">
+                        <div class="step-number">{{ loop.index }}</div>
+                        <div class="step-content">
+                            <div class="step-title">{{ step }}</div>
+                            <ul class="step-details">
+                                {% if step == 'Python & Math' or step == 'Python & Statistics' %}
+                                <li>Python Programming</li>
+                                <li>Linear Algebra</li>
+                                <li>Statistics</li>
+                                {% elif step == 'Machine Learning' %}
+                                <li>ML Algorithms</li>
+                                <li>Model Training</li>
+                                <li>Scikit-learn</li>
+                                {% elif step == 'Deep Learning' %}
+                                <li>Neural Networks</li>
+                                <li>TensorFlow/PyTorch</li>
+                                <li>CNNs & RNNs</li>
+                                {% elif step == 'NLP & CV' %}
+                                <li>Text Processing</li>
+                                <li>Computer Vision</li>
+                                <li>Transformers</li>
+                                {% elif step == 'MLOps' %}
+                                <li>Docker</li>
+                                <li>CI/CD Pipelines</li>
+                                <li>Cloud Deployment</li>
+                                {% elif step == 'Data Visualization' %}
+                                <li>Matplotlib</li>
+                                <li>Seaborn</li>
+                                <li>Tableau/PowerBI</li>
+                                {% elif step == 'Model Deployment' %}
+                                <li>Flask/FastAPI</li>
+                                <li>Docker</li>
+                                <li>Cloud Services</li>
+                                {% elif step == 'HTML, CSS, JavaScript' %}
+                                <li>HTML5 & CSS3</li>
+                                <li>JavaScript ES6+</li>
+                                <li>Responsive Design</li>
+                                {% elif step == 'Frontend Frameworks' %}
+                                <li>React.js</li>
+                                <li>Vue.js</li>
+                                <li>State Management</li>
+                                {% elif step == 'Backend Development' %}
+                                <li>Node.js</li>
+                                <li>Django/Flask</li>
+                                <li>REST APIs</li>
+                                {% elif step == 'Databases' %}
+                                <li>SQL & PostgreSQL</li>
+                                <li>MongoDB</li>
+                                <li>Redis</li>
+                                {% elif step == 'System Design' %}
+                                <li>Architecture</li>
+                                <li>Scalability</li>
+                                <li>Microservices</li>
+                                {% elif step == 'Excel & SQL' %}
+                                <li>Advanced Excel</li>
+                                <li>SQL Queries</li>
+                                <li>Data Cleaning</li>
+                                {% elif step == 'Data Analysis' %}
+                                <li>Statistical Analysis</li>
+                                <li>Pandas</li>
+                                <li>Data Wrangling</li>
+                                {% elif step == 'Business Intelligence Tools' %}
+                                <li>Power BI</li>
+                                <li>Tableau</li>
+                                <li>Reporting</li>
+                                {% elif step == 'Stakeholder Communication' %}
+                                <li>Presentations</li>
+                                <li>Data Storytelling</li>
+                                <li>Requirements</li>
+                                {% elif step == 'Domain Knowledge' %}
+                                <li>Industry Trends</li>
+                                <li>Best Practices</li>
+                                <li>Case Studies</li>
+                                {% elif step == 'Programming Fundamentals' %}
+                                <li>OOP Concepts</li>
+                                <li>Clean Code</li>
+                                <li>Debugging</li>
+                                {% elif step == 'DSA' %}
+                                <li>Data Structures</li>
+                                <li>Algorithms</li>
+                                <li>Complexity</li>
+                                {% elif step == 'Problem Solving' %}
+                                <li>LeetCode</li>
+                                <li>HackerRank</li>
+                                <li>Competitions</li>
+                                {% elif step == 'Project Development' %}
+                                <li>Git & GitHub</li>
+                                <li>Agile/Scrum</li>
+                                <li>Collaboration</li>
+                                {% elif step == 'Networking Fundamentals' %}
+                                <li>TCP/IP & DNS</li>
+                                <li>Firewalls</li>
+                                <li>Network Protocols</li>
+                                {% elif step == 'Security Fundamentals' %}
+                                <li>CIA Triad</li>
+                                <li>Cryptography</li>
+                                <li>Security Policies</li>
+                                {% elif step == 'Ethical Hacking' %}
+                                <li>Penetration Testing</li>
+                                <li>Vulnerability Assessment</li>
+                                <li>Kali Linux</li>
+                                {% elif step == 'Cloud Security' %}
+                                <li>AWS/Azure Security</li>
+                                <li>IAM & Access Control</li>
+                                <li>Security Compliance</li>
+                                {% elif step == 'Incident Response' %}
+                                <li>Threat Detection</li>
+                                <li>Forensics</li>
+                                <li>SIEM Tools</li>
+                                {% elif step == 'Linux & Networking' %}
+                                <li>Linux Administration</li>
+                                <li>Shell Scripting</li>
+                                <li>Networking Basics</li>
+                                {% elif step == 'Cloud Platforms' %}
+                                <li>AWS/Azure/GCP</li>
+                                <li>Cloud Services</li>
+                                <li>Serverless</li>
+                                {% elif step == 'Containers & Kubernetes' %}
+                                <li>Docker</li>
+                                <li>Kubernetes</li>
+                                <li>Container Orchestration</li>
+                                {% elif step == 'CI/CD Pipelines' %}
+                                <li>Jenkins/GitHub Actions</li>
+                                <li>Automated Testing</li>
+                                <li>Deployment Automation</li>
+                                {% elif step == 'Infrastructure as Code' %}
+                                <li>Terraform</li>
+                                <li>Ansible</li>
+                                <li>CloudFormation</li>
+                                {% elif step == 'Programming Basics' %}
+                                <li>Swift/Kotlin</li>
+                                <li>Dart/JavaScript</li>
+                                <li>OOP Concepts</li>
+                                {% elif step == 'Mobile UI/UX' %}
+                                <li>Material Design</li>
+                                <li>iOS HIG</li>
+                                <li>Responsive Layouts</li>
+                                {% elif step == 'Native Development' %}
+                                <li>Android Studio</li>
+                                <li>Xcode</li>
+                                <li>Platform APIs</li>
+                                {% elif step == 'Cross-Platform Frameworks' %}
+                                <li>React Native</li>
+                                <li>Flutter</li>
+                                <li>Ionic</li>
+                                {% elif step == 'App Deployment' %}
+                                <li>Play Store</li>
+                                <li>App Store</li>
+                                <li>CI/CD for Mobile</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Bottom Row Cards -->
+            <div class="dashboard-grid stagger-children">
+                <!-- Skill Gap Analysis -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔍</div>
+                        <h3 class="card-title">Skill Gap Analysis</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            {% if career == 'Data Scientist' %}
+                            <li>Advanced Statistics</li>
+                            <li>Machine Learning</li>
+                            <li>Big Data Tools</li>
+                            {% elif career == 'Full Stack Developer' %}
+                            <li>Cloud Services</li>
+                            <li>DevOps Practices</li>
+                            <li>Testing Frameworks</li>
+                            {% elif career == 'AI / ML Engineer' %}
+                            <li>Deep Learning</li>
+                            <li>MLOps</li>
+                            <li>Model Optimization</li>
+                            {% elif career == 'Business Analyst' %}
+                            <li>Data Visualization</li>
+                            <li>SQL Advanced</li>
+                            <li>Domain Expertise</li>
+                            {% elif career == 'Cybersecurity Analyst' %}
+                            <li>Penetration Testing</li>
+                            <li>SIEM & SOC Tools</li>
+                            <li>Compliance Standards</li>
+                            {% elif career == 'Cloud/DevOps Engineer' %}
+                            <li>Kubernetes Advanced</li>
+                            <li>Multi-Cloud Strategy</li>
+                            <li>Security Best Practices</li>
+                            {% elif career == 'Mobile App Developer' %}
+                            <li>Cross-Platform Testing</li>
+                            <li>App Performance</li>
+                            <li>Backend Integration</li>
+                            {% else %}
+                            <li>System Design</li>
+                            <li>Cloud Architecture</li>
+                            <li>Advanced DSA</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Learning Resources -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">📚</div>
+                        <h3 class="card-title">Learning Resources</h3>
+                    </div>
+                    <div class="card-content">
+                        {% if career == 'Data Scientist' %}
+                        <div class="resource-link">
+                            <span>🎓</span>
+                            <a href="https://www.coursera.org/search?query=data%20science" target="_blank">Data Science
+                                Courses</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📺</span>
+                            <a href="https://www.youtube.com/results?search_query=data+science+tutorial+for+beginners"
+                                target="_blank">Data Science Tutorials</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>💻</span>
+                            <a href="https://github.com/topics/data-science" target="_blank">Data Science Projects</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📖</span>
+                            <a href="https://scikit-learn.org/stable/documentation.html" target="_blank">Scikit-Learn
+                                Docs</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
+                        </div>
+                        {% elif career == 'Full Stack Developer' %}
+                        <div class="resource-link">
+                            <span>🎓</span>
+                            <a href="https://www.coursera.org/search?query=full%20stack%20web%20development"
+                                target="_blank">Full Stack Courses</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📺</span>
+                            <a href="https://www.youtube.com/results?search_query=full+stack+web+development+tutorial"
+                                target="_blank">Web Dev Tutorials</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>💻</span>
+                            <a href="https://github.com/topics/fullstack" target="_blank">Full Stack Projects</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📖</span>
+                            <a href="https://developer.mozilla.org/en-US/docs/Learn" target="_blank">MDN Web Docs</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
+                        </div>
+                        {% elif career == 'AI / ML Engineer' %}
+                        <div class="resource-link">
+                            <span>🎓</span>
+                            <a href="https://www.coursera.org/search?query=machine%20learning%20deep%20learning"
+                                target="_blank">ML & AI Courses</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📺</span>
+                            <a href="https://www.youtube.com/results?search_query=machine+learning+tutorial+python"
+                                target="_blank">ML Tutorials</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>💻</span>
+                            <a href="https://github.com/topics/machine-learning" target="_blank">ML Projects</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📖</span>
+                            <a href="https://pytorch.org/tutorials/" target="_blank">PyTorch Tutorials</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
+                        </div>
+                        {% elif career == 'Business Analyst' %}
+                        <div class="resource-link">
+                            <span>🎓</span>
+                            <a href="https://www.coursera.org/search?query=business%20analytics"
+                                target="_blank">Business Analytics</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📺</span>
+                            <a href="https://www.youtube.com/results?search_query=business+analyst+tutorial+for+beginners"
+                                target="_blank">BA Tutorials</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>💻</span>
+                            <a href="https://github.com/topics/business-intelligence" target="_blank">BI Projects</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📖</span>
+                            <a href="https://docs.microsoft.com/en-us/power-bi/" target="_blank">Power BI Docs</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
+                        </div>
+                        {% elif career == 'Cybersecurity Analyst' %}
+                        <div class="resource-link">
+                            <span>🎓</span>
+                            <a href="https://www.coursera.org/search?query=cybersecurity" target="_blank">Cybersecurity
+                                Courses</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📺</span>
+                            <a href="https://www.youtube.com/results?search_query=ethical+hacking+tutorial+for+beginners"
+                                target="_blank">Ethical Hacking Tutorials</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>💻</span>
+                            <a href="https://github.com/topics/cybersecurity" target="_blank">Security Projects</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📖</span>
+                            <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank">OWASP
+                                Guide</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
+                        </div>
+                        {% elif career == 'Cloud/DevOps Engineer' %}
+                        <div class="resource-link">
+                            <span>🎓</span>
+                            <a href="https://www.coursera.org/search?query=devops%20cloud" target="_blank">DevOps &
+                                Cloud Courses</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📺</span>
+                            <a href="https://www.youtube.com/results?search_query=kubernetes+docker+tutorial"
+                                target="_blank">DevOps Tutorials</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>💻</span>
+                            <a href="https://github.com/topics/devops" target="_blank">DevOps Projects</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📖</span>
+                            <a href="https://kubernetes.io/docs/home/" target="_blank">Kubernetes Docs</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
+                        </div>
+                        {% elif career == 'Mobile App Developer' %}
+                        <div class="resource-link">
+                            <span>🎓</span>
+                            <a href="https://www.coursera.org/search?query=mobile%20app%20development"
+                                target="_blank">Mobile Dev Courses</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📺</span>
+                            <a href="https://www.youtube.com/results?search_query=flutter+react+native+tutorial"
+                                target="_blank">Mobile Dev Tutorials</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>💻</span>
+                            <a href="https://github.com/topics/mobile-app" target="_blank">Mobile Projects</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📖</span>
+                            <a href="https://flutter.dev/docs" target="_blank">Flutter Docs</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
+                        </div>
+                        {% else %}
+                        <div class="resource-link">
+                            <span>🎓</span>
+                            <a href="https://www.coursera.org/search?query=software%20engineering"
+                                target="_blank">Software Engineering</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📺</span>
+                            <a href="https://www.youtube.com/results?search_query=software+engineering+tutorial"
+                                target="_blank">SE Tutorials</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>💻</span>
+                            <a href="https://github.com/topics/software-engineering" target="_blank">SE Projects</a>
+                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
+                        </div>
+                        <div class="resource-link">
+                            <span>📖</span>
+                            <a href="https://docs.python.org/3/" target="_blank">Python Docs</a>
+                            <span
+                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Alternative Paths -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">🔀</div>
+                        <h3 class="card-title">Alternative Paths</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            {% if career == 'Data Scientist' %}
+                            <li>ML Engineer</li>
+                            <li>Data Analyst</li>
+                            <li>Research Scientist</li>
+                            {% elif career == 'Full Stack Developer' %}
+                            <li>Frontend Specialist</li>
+                            <li>Backend Engineer</li>
+                            <li>DevOps Engineer</li>
+                            {% elif career == 'AI / ML Engineer' %}
+                            <li>Data Scientist</li>
+                            <li>Research Scientist</li>
+                            <li>MLOps Engineer</li>
+                            {% elif career == 'Business Analyst' %}
+                            <li>Product Manager</li>
+                            <li>Data Analyst</li>
+                            <li>Project Manager</li>
+                            {% elif career == 'Cybersecurity Analyst' %}
+                            <li>Security Engineer</li>
+                            <li>Penetration Tester</li>
+                            <li>SOC Analyst</li>
+                            {% elif career == 'Cloud/DevOps Engineer' %}
+                            <li>Site Reliability Engineer</li>
+                            <li>Platform Engineer</li>
+                            <li>Cloud Architect</li>
+                            {% elif career == 'Mobile App Developer' %}
+                            <li>iOS Developer</li>
+                            <li>Android Developer</li>
+                            <li>Flutter Developer</li>
+                            {% else %}
+                            <li>Full Stack Developer</li>
+                            <li>DevOps Engineer</li>
+                            <li>Tech Lead</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div style="text-align: center; margin-top: var(--spacing-8);">
+                <a href="/" class="btn btn-secondary">
+                    ← Back to Simulator
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                Made with <span class="footer-heart">❤️</span> for aspiring tech professionals
+            </p>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+    <script>
+        // Chart Configuration
+        const growthData = {
+            "Data Scientist": [6, 10, 14, 20, 25, 32],
+            "Full Stack Developer": [4, 8, 12, 16, 22, 28],
+            "AI / ML Engineer": [7, 13, 18, 24, 32, 40],
+            "Business Analyst": [5, 8, 12, 15, 19, 24],
+            "Software Engineer": [4, 9, 14, 20, 26, 32],
+            "Cybersecurity Analyst": [5, 10, 16, 22, 30, 38],
+            "Cloud/DevOps Engineer": [6, 12, 18, 25, 32, 42],
+            "Mobile App Developer": [4, 8, 14, 20, 26, 34]
+        };
+
+        const salaryTextMap = {
+            "Data Scientist": "💰 ₹6–8 LPA → ₹32+ LPA",
+            "Full Stack Developer": "💰 ₹4–8 LPA → ₹28+ LPA",
+            "AI / ML Engineer": "💰 ₹7–10 LPA → ₹40+ LPA",
+            "Business Analyst": "💰 ₹5–8 LPA → ₹24+ LPA",
+            "Software Engineer": "💰 ₹4–9 LPA → ₹32+ LPA",
+            "Cybersecurity Analyst": "💰 ₹5–10 LPA → ₹38+ LPA",
+            "Cloud/DevOps Engineer": "💰 ₹6–12 LPA → ₹42+ LPA",
+            "Mobile App Developer": "💰 ₹4–8 LPA → ₹34+ LPA"
+        };
+
+        const labels = ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"];
+        const career = "{{ career }}";
+
+        // Get theme-aware colors
+        const getChartColors = () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            return {
+                borderColor: '#6366f1',
+                backgroundColor: isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(99, 102, 241, 0.1)',
+                gridColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                textColor: isDark ? '#cbd5e1' : '#475569'
+            };
+        };
+
+        let chartInstance = null;
+
+        const createChart = () => {
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            const colors = getChartColors();
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Salary (LPA)',
+                        data: growthData[career] || [5, 10, 15, 20, 25, 30],
+                        borderColor: colors.borderColor,
+                        backgroundColor: colors.backgroundColor,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 5,
+                        pointBackgroundColor: colors.borderColor,
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: colors.gridColor },
+                            ticks: {
+                                color: colors.textColor,
+                                callback: function (value) {
+                                    return '₹' + value + 'L';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: colors.textColor }
+                        }
+                    }
+                }
+            });
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createChart();
+            document.getElementById('salaryRange').innerText = salaryTextMap[career] || '💰 ₹5–10 LPA → ₹30+ LPA';
+        });
+
+        // Update chart on theme change
+        const originalToggle = window.toggleTheme;
+        window.toggleTheme = () => {
+            originalToggle();
+            setTimeout(createChart, 100);
+        };
+    </script>
+</body>
+
+</html>

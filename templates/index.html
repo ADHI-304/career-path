@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Career Path Simulator - Discover your ideal tech career path with AI-powered recommendations based on your skills and interests.">
+    <title>AI Career Path Simulator | Find Your Dream Tech Career</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">🚀</div>
+                <span class="logo-text">CareerPath AI</span>
+            </a>
+            <div class="nav-actions">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                    <div class="theme-toggle-icons">
+                        <span>☀️</span>
+                        <span>🌙</span>
+                    </div>
+                    <div class="theme-toggle-slider"></div>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="hero-background"></div>
+        
+        <div class="hero-content">
+            <div class="hero-badge animate-fadeInUp">
+                <span>✨</span>
+                <span>AI-Powered Career Guidance</span>
+            </div>
+            <h1 class="hero-title animate-fadeInUp animate-delay-1">
+                Discover Your Perfect<br>Tech Career Path
+            </h1>
+            <p class="hero-subtitle animate-fadeInUp animate-delay-2">
+                Enter your skills and interests to receive personalized career recommendations, 
+                learning roadmaps, and growth projections powered by AI.
+            </p>
+        </div>
+
+        <!-- Main Form Card -->
+        <div class="glass-card animate-fadeInUp animate-delay-3">
+            <h2 class="form-title">Start Your Journey</h2>
+            
+            <form method="post" class="career-form">
+                <div class="form-group">
+                    <label class="form-label" for="skills">💼 Your Skills</label>
+                    <textarea 
+                        id="skills"
+                        name="skills" 
+                        class="form-textarea" 
+                        placeholder="e.g., Python, JavaScript, SQL, Data Analysis, Machine Learning..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="interest">🎯 Your Interests</label>
+                    <textarea 
+                        id="interest"
+                        name="interest" 
+                        class="form-textarea" 
+                        placeholder="e.g., Artificial Intelligence, Web Development, Data Science, Mobile Apps..."
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="goal">🏆 Career Goal</label>
+                    <input 
+                        type="text" 
+                        id="goal"
+                        name="goal" 
+                        class="form-input" 
+                        placeholder="e.g., Become a Senior Data Scientist at a top tech company"
+                        required
+                    />
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <span class="btn-text">🔮 Generate Career Path</span>
+                    <span class="spinner"></span>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-grid stagger-children">
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Career Analysis</h3>
+                <p class="feature-desc">Get detailed insights into various tech career paths based on your unique profile.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3 class="feature-title">Learning Roadmap</h3>
+                <p class="feature-desc">Receive a step-by-step roadmap to develop the skills needed for your dream role.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">Growth Projection</h3>
+                <p class="feature-desc">Visualize your potential career growth and salary progression over time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">
+                Made with <span class="footer-heart">❤️</span> for aspiring tech professionals
+            </p>
+        </div>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
