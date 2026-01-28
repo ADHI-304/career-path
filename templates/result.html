@@ -14,6 +14,28 @@
 </head>
 
 <body>
+    <!-- Animated Background Particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Cyber Grid Background -->
+    <div class="cyber-grid"></div>
+
     <!-- Header -->
     <header class="header">
         <div class="header-content">
@@ -38,7 +60,7 @@
         <div class="dashboard-container">
             <!-- Dashboard Header -->
             <div class="dashboard-header">
-                <h1 class="dashboard-title">🎯 Your Career Intelligence Report</h1>
+                <h1 class="dashboard-title">🎯 Career Intelligence Report</h1>
                 <p class="dashboard-subtitle">Personalized recommendations based on your profile</p>
             </div>
 
@@ -89,6 +111,36 @@
                     </div>
                 </div>
 
+                <!-- Skill Match -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎯</div>
+                        <h3 class="card-title">Skill Match</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="skill-match-container">
+                            <div class="skill-match-circle">
+                                <svg width="120" height="120">
+                                    <defs>
+                                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#00fff5" />
+                                            <stop offset="100%" stop-color="#b400ff" />
+                                        </linearGradient>
+                                    </defs>
+                                    <circle class="skill-match-bg" cx="60" cy="60" r="50"></circle>
+                                    <circle class="skill-match-progress" cx="60" cy="60" r="50" stroke-dasharray="314"
+                                        stroke-dashoffset="314" id="skillMatchCircle"></circle>
+                                </svg>
+                                <div class="skill-match-text" id="skillMatchPercent">0%</div>
+                            </div>
+                            <div class="skill-match-label">Profile Match</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growth & Industry Row -->
+            <div class="dashboard-grid stagger-children">
                 <!-- Growth Projection -->
                 <div class="dashboard-card">
                     <div class="card-header">
@@ -100,6 +152,64 @@
                             <canvas id="growthChart"></canvas>
                         </div>
                         <div class="salary-range" id="salaryRange">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- Industry Demand -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">🌐</div>
+                        <h3 class="card-title">Industry Demand</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="chart-container">
+                            <canvas id="demandChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Market Insights -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">📊</div>
+                        <h3 class="card-title">Market Insights</h3>
+                    </div>
+                    <div class="card-content">
+                        <ul>
+                            {% if career == 'Data Scientist' %}
+                            <li>🔥 <b>Demand:</b> Very High</li>
+                            <li>📈 <b>Growth Rate:</b> +35% YoY</li>
+                            <li>🌍 <b>Remote:</b> 70% opportunities</li>
+                            {% elif career == 'Full Stack Developer' %}
+                            <li>🔥 <b>Demand:</b> High</li>
+                            <li>📈 <b>Growth Rate:</b> +25% YoY</li>
+                            <li>🌍 <b>Remote:</b> 80% opportunities</li>
+                            {% elif career == 'AI / ML Engineer' %}
+                            <li>🔥 <b>Demand:</b> Extremely High</li>
+                            <li>📈 <b>Growth Rate:</b> +45% YoY</li>
+                            <li>🌍 <b>Remote:</b> 65% opportunities</li>
+                            {% elif career == 'Business Analyst' %}
+                            <li>🔥 <b>Demand:</b> High</li>
+                            <li>📈 <b>Growth Rate:</b> +20% YoY</li>
+                            <li>🌍 <b>Remote:</b> 50% opportunities</li>
+                            {% elif career == 'Cybersecurity Analyst' %}
+                            <li>🔥 <b>Demand:</b> Critical</li>
+                            <li>📈 <b>Growth Rate:</b> +40% YoY</li>
+                            <li>🌍 <b>Remote:</b> 60% opportunities</li>
+                            {% elif career == 'Cloud/DevOps Engineer' %}
+                            <li>🔥 <b>Demand:</b> Very High</li>
+                            <li>📈 <b>Growth Rate:</b> +38% YoY</li>
+                            <li>🌍 <b>Remote:</b> 75% opportunities</li>
+                            {% elif career == 'Mobile App Developer' %}
+                            <li>🔥 <b>Demand:</b> High</li>
+                            <li>📈 <b>Growth Rate:</b> +28% YoY</li>
+                            <li>🌍 <b>Remote:</b> 70% opportunities</li>
+                            {% else %}
+                            <li>🔥 <b>Demand:</b> High</li>
+                            <li>📈 <b>Growth Rate:</b> +22% YoY</li>
+                            <li>🌍 <b>Remote:</b> 65% opportunities</li>
+                            {% endif %}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -280,37 +390,37 @@
                     <div class="card-content">
                         <ul>
                             {% if career == 'Data Scientist' %}
-                            <li>Advanced Statistics</li>
-                            <li>Machine Learning</li>
-                            <li>Big Data Tools</li>
+                            <li>▹ Advanced Statistics</li>
+                            <li>▹ Machine Learning</li>
+                            <li>▹ Big Data Tools</li>
                             {% elif career == 'Full Stack Developer' %}
-                            <li>Cloud Services</li>
-                            <li>DevOps Practices</li>
-                            <li>Testing Frameworks</li>
+                            <li>▹ Cloud Services</li>
+                            <li>▹ DevOps Practices</li>
+                            <li>▹ Testing Frameworks</li>
                             {% elif career == 'AI / ML Engineer' %}
-                            <li>Deep Learning</li>
-                            <li>MLOps</li>
-                            <li>Model Optimization</li>
+                            <li>▹ Deep Learning</li>
+                            <li>▹ MLOps</li>
+                            <li>▹ Model Optimization</li>
                             {% elif career == 'Business Analyst' %}
-                            <li>Data Visualization</li>
-                            <li>SQL Advanced</li>
-                            <li>Domain Expertise</li>
+                            <li>▹ Data Visualization</li>
+                            <li>▹ SQL Advanced</li>
+                            <li>▹ Domain Expertise</li>
                             {% elif career == 'Cybersecurity Analyst' %}
-                            <li>Penetration Testing</li>
-                            <li>SIEM & SOC Tools</li>
-                            <li>Compliance Standards</li>
+                            <li>▹ Penetration Testing</li>
+                            <li>▹ SIEM & SOC Tools</li>
+                            <li>▹ Compliance Standards</li>
                             {% elif career == 'Cloud/DevOps Engineer' %}
-                            <li>Kubernetes Advanced</li>
-                            <li>Multi-Cloud Strategy</li>
-                            <li>Security Best Practices</li>
+                            <li>▹ Kubernetes Advanced</li>
+                            <li>▹ Multi-Cloud Strategy</li>
+                            <li>▹ Security Best Practices</li>
                             {% elif career == 'Mobile App Developer' %}
-                            <li>Cross-Platform Testing</li>
-                            <li>App Performance</li>
-                            <li>Backend Integration</li>
+                            <li>▹ Cross-Platform Testing</li>
+                            <li>▹ App Performance</li>
+                            <li>▹ Backend Integration</li>
                             {% else %}
-                            <li>System Design</li>
-                            <li>Cloud Architecture</li>
-                            <li>Advanced DSA</li>
+                            <li>▹ System Design</li>
+                            <li>▹ Cloud Architecture</li>
+                            <li>▹ Advanced DSA</li>
                             {% endif %}
                         </ul>
                     </div>
@@ -328,249 +438,274 @@
                             <span>🎓</span>
                             <a href="https://www.coursera.org/search?query=data%20science" target="_blank">Data Science
                                 Courses</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
                         </div>
                         <div class="resource-link">
                             <span>📺</span>
                             <a href="https://www.youtube.com/results?search_query=data+science+tutorial+for+beginners"
                                 target="_blank">Data Science Tutorials</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
                         </div>
                         <div class="resource-link">
                             <span>💻</span>
                             <a href="https://github.com/topics/data-science" target="_blank">Data Science Projects</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
                         </div>
                         <div class="resource-link">
                             <span>📖</span>
                             <a href="https://scikit-learn.org/stable/documentation.html" target="_blank">Scikit-Learn
                                 Docs</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
                         </div>
                         {% elif career == 'Full Stack Developer' %}
                         <div class="resource-link">
                             <span>🎓</span>
                             <a href="https://www.coursera.org/search?query=full%20stack%20web%20development"
                                 target="_blank">Full Stack Courses</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
                         </div>
                         <div class="resource-link">
                             <span>📺</span>
                             <a href="https://www.youtube.com/results?search_query=full+stack+web+development+tutorial"
                                 target="_blank">Web Dev Tutorials</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
                         </div>
                         <div class="resource-link">
                             <span>💻</span>
                             <a href="https://github.com/topics/fullstack" target="_blank">Full Stack Projects</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
                         </div>
                         <div class="resource-link">
                             <span>📖</span>
                             <a href="https://developer.mozilla.org/en-US/docs/Learn" target="_blank">MDN Web Docs</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
                         </div>
                         {% elif career == 'AI / ML Engineer' %}
                         <div class="resource-link">
                             <span>🎓</span>
                             <a href="https://www.coursera.org/search?query=machine%20learning%20deep%20learning"
                                 target="_blank">ML & AI Courses</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
                         </div>
                         <div class="resource-link">
                             <span>📺</span>
                             <a href="https://www.youtube.com/results?search_query=machine+learning+tutorial+python"
                                 target="_blank">ML Tutorials</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
                         </div>
                         <div class="resource-link">
                             <span>💻</span>
                             <a href="https://github.com/topics/machine-learning" target="_blank">ML Projects</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
                         </div>
                         <div class="resource-link">
                             <span>📖</span>
                             <a href="https://pytorch.org/tutorials/" target="_blank">PyTorch Tutorials</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
                         </div>
                         {% elif career == 'Business Analyst' %}
                         <div class="resource-link">
                             <span>🎓</span>
                             <a href="https://www.coursera.org/search?query=business%20analytics"
                                 target="_blank">Business Analytics</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
                         </div>
                         <div class="resource-link">
                             <span>📺</span>
                             <a href="https://www.youtube.com/results?search_query=business+analyst+tutorial+for+beginners"
                                 target="_blank">BA Tutorials</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
                         </div>
                         <div class="resource-link">
                             <span>💻</span>
                             <a href="https://github.com/topics/business-intelligence" target="_blank">BI Projects</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
                         </div>
                         <div class="resource-link">
                             <span>📖</span>
                             <a href="https://docs.microsoft.com/en-us/power-bi/" target="_blank">Power BI Docs</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
                         </div>
                         {% elif career == 'Cybersecurity Analyst' %}
                         <div class="resource-link">
                             <span>🎓</span>
                             <a href="https://www.coursera.org/search?query=cybersecurity" target="_blank">Cybersecurity
                                 Courses</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
                         </div>
                         <div class="resource-link">
                             <span>📺</span>
                             <a href="https://www.youtube.com/results?search_query=ethical+hacking+tutorial+for+beginners"
                                 target="_blank">Ethical Hacking Tutorials</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
                         </div>
                         <div class="resource-link">
                             <span>💻</span>
                             <a href="https://github.com/topics/cybersecurity" target="_blank">Security Projects</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
                         </div>
                         <div class="resource-link">
                             <span>📖</span>
                             <a href="https://owasp.org/www-project-web-security-testing-guide/" target="_blank">OWASP
                                 Guide</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
                         </div>
                         {% elif career == 'Cloud/DevOps Engineer' %}
                         <div class="resource-link">
                             <span>🎓</span>
                             <a href="https://www.coursera.org/search?query=devops%20cloud" target="_blank">DevOps &
                                 Cloud Courses</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
                         </div>
                         <div class="resource-link">
                             <span>📺</span>
                             <a href="https://www.youtube.com/results?search_query=kubernetes+docker+tutorial"
                                 target="_blank">DevOps Tutorials</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
                         </div>
                         <div class="resource-link">
                             <span>💻</span>
                             <a href="https://github.com/topics/devops" target="_blank">DevOps Projects</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
                         </div>
                         <div class="resource-link">
                             <span>📖</span>
                             <a href="https://kubernetes.io/docs/home/" target="_blank">Kubernetes Docs</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
                         </div>
                         {% elif career == 'Mobile App Developer' %}
                         <div class="resource-link">
                             <span>🎓</span>
                             <a href="https://www.coursera.org/search?query=mobile%20app%20development"
                                 target="_blank">Mobile Dev Courses</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
                         </div>
                         <div class="resource-link">
                             <span>📺</span>
                             <a href="https://www.youtube.com/results?search_query=flutter+react+native+tutorial"
                                 target="_blank">Mobile Dev Tutorials</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
                         </div>
                         <div class="resource-link">
                             <span>💻</span>
                             <a href="https://github.com/topics/mobile-app" target="_blank">Mobile Projects</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
                         </div>
                         <div class="resource-link">
                             <span>📖</span>
                             <a href="https://flutter.dev/docs" target="_blank">Flutter Docs</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
                         </div>
                         {% else %}
                         <div class="resource-link">
                             <span>🎓</span>
                             <a href="https://www.coursera.org/search?query=software%20engineering"
                                 target="_blank">Software Engineering</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Coursera</span>
                         </div>
                         <div class="resource-link">
                             <span>📺</span>
                             <a href="https://www.youtube.com/results?search_query=software+engineering+tutorial"
                                 target="_blank">SE Tutorials</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">YouTube</span>
                         </div>
                         <div class="resource-link">
                             <span>💻</span>
                             <a href="https://github.com/topics/software-engineering" target="_blank">SE Projects</a>
-                            <span style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">GitHub</span>
                         </div>
                         <div class="resource-link">
                             <span>📖</span>
                             <a href="https://docs.python.org/3/" target="_blank">Python Docs</a>
-                            <span
-                                style="color: var(--text-muted); margin-left: auto; font-size: 0.8rem;">Documentation</span>
                         </div>
                         {% endif %}
                     </div>
                 </div>
 
-                <!-- Alternative Paths -->
+                <!-- Top Companies & Alternative Paths -->
                 <div class="dashboard-card">
                     <div class="card-header">
-                        <div class="card-icon">🔀</div>
-                        <h3 class="card-title">Alternative Paths</h3>
+                        <div class="card-icon">🏢</div>
+                        <h3 class="card-title">Top Hiring Companies</h3>
                     </div>
                     <div class="card-content">
                         <ul>
                             {% if career == 'Data Scientist' %}
-                            <li>ML Engineer</li>
-                            <li>Data Analyst</li>
-                            <li>Research Scientist</li>
+                            <li>🔹 Google</li>
+                            <li>🔹 Meta</li>
+                            <li>🔹 Amazon</li>
+                            <li>🔹 Netflix</li>
                             {% elif career == 'Full Stack Developer' %}
-                            <li>Frontend Specialist</li>
-                            <li>Backend Engineer</li>
-                            <li>DevOps Engineer</li>
+                            <li>🔹 Microsoft</li>
+                            <li>🔹 Spotify</li>
+                            <li>🔹 Shopify</li>
+                            <li>🔹 Stripe</li>
                             {% elif career == 'AI / ML Engineer' %}
-                            <li>Data Scientist</li>
-                            <li>Research Scientist</li>
-                            <li>MLOps Engineer</li>
+                            <li>🔹 OpenAI</li>
+                            <li>🔹 DeepMind</li>
+                            <li>🔹 NVIDIA</li>
+                            <li>🔹 Tesla</li>
                             {% elif career == 'Business Analyst' %}
-                            <li>Product Manager</li>
-                            <li>Data Analyst</li>
-                            <li>Project Manager</li>
+                            <li>🔹 McKinsey</li>
+                            <li>🔹 Deloitte</li>
+                            <li>🔹 Accenture</li>
+                            <li>🔹 BCG</li>
                             {% elif career == 'Cybersecurity Analyst' %}
-                            <li>Security Engineer</li>
-                            <li>Penetration Tester</li>
-                            <li>SOC Analyst</li>
+                            <li>🔹 CrowdStrike</li>
+                            <li>🔹 Palo Alto</li>
+                            <li>🔹 Cisco</li>
+                            <li>🔹 IBM Security</li>
                             {% elif career == 'Cloud/DevOps Engineer' %}
-                            <li>Site Reliability Engineer</li>
-                            <li>Platform Engineer</li>
-                            <li>Cloud Architect</li>
+                            <li>🔹 AWS</li>
+                            <li>🔹 Azure</li>
+                            <li>🔹 Google Cloud</li>
+                            <li>🔹 HashiCorp</li>
                             {% elif career == 'Mobile App Developer' %}
-                            <li>iOS Developer</li>
-                            <li>Android Developer</li>
-                            <li>Flutter Developer</li>
+                            <li>🔹 Apple</li>
+                            <li>🔹 Google</li>
+                            <li>🔹 Uber</li>
+                            <li>🔹 Airbnb</li>
                             {% else %}
-                            <li>Full Stack Developer</li>
-                            <li>DevOps Engineer</li>
-                            <li>Tech Lead</li>
+                            <li>🔹 Google</li>
+                            <li>🔹 Microsoft</li>
+                            <li>🔹 Amazon</li>
+                            <li>🔹 Apple</li>
                             {% endif %}
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative Paths -->
+            <div class="dashboard-grid stagger-children">
+                <div class="dashboard-card" style="grid-column: span 3;">
+                    <div class="card-header">
+                        <div class="card-icon">🔀</div>
+                        <h3 class="card-title">Alternative Career Paths</h3>
+                    </div>
+                    <div class="card-content"
+                        style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                        {% if career == 'Data Scientist' %}
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">ML Engineer</div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Data Analyst</div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Research Scientist
+                        </div>
+                        {% elif career == 'Full Stack Developer' %}
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Frontend
+                            Specialist</div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Backend Engineer
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">DevOps Engineer
+                        </div>
+                        {% elif career == 'AI / ML Engineer' %}
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Data Scientist
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Research Scientist
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">MLOps Engineer
+                        </div>
+                        {% elif career == 'Business Analyst' %}
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Product Manager
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Data Analyst</div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Project Manager
+                        </div>
+                        {% elif career == 'Cybersecurity Analyst' %}
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Security Engineer
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Penetration Tester
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">SOC Analyst</div>
+                        {% elif career == 'Cloud/DevOps Engineer' %}
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Site Reliability
+                            Engineer</div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Platform Engineer
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Cloud Architect
+                        </div>
+                        {% elif career == 'Mobile App Developer' %}
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">iOS Developer
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Android Developer
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Flutter Developer
+                        </div>
+                        {% else %}
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Full Stack
+                            Developer</div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">DevOps Engineer
+                        </div>
+                        <div class="career-badge" style="font-size: 0.9rem; padding: 0.75rem 1.5rem;">Tech Lead</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -595,7 +730,7 @@
 
     <script src="/static/script.js"></script>
     <script>
-        // Chart Configuration
+        // Chart Configuration with Cyberpunk Colors
         const growthData = {
             "Data Scientist": [6, 10, 14, 20, 25, 32],
             "Full Stack Developer": [4, 8, 12, 16, 22, 28],
@@ -605,6 +740,28 @@
             "Cybersecurity Analyst": [5, 10, 16, 22, 30, 38],
             "Cloud/DevOps Engineer": [6, 12, 18, 25, 32, 42],
             "Mobile App Developer": [4, 8, 14, 20, 26, 34]
+        };
+
+        const skillMatchData = {
+            "Data Scientist": 87,
+            "Full Stack Developer": 82,
+            "AI / ML Engineer": 91,
+            "Business Analyst": 78,
+            "Software Engineer": 85,
+            "Cybersecurity Analyst": 84,
+            "Cloud/DevOps Engineer": 88,
+            "Mobile App Developer": 80
+        };
+
+        const industryDemandData = {
+            "Data Scientist": [85, 90, 75, 80, 70],
+            "Full Stack Developer": [90, 80, 85, 75, 80],
+            "AI / ML Engineer": [95, 85, 80, 90, 75],
+            "Business Analyst": [70, 85, 80, 65, 90],
+            "Software Engineer": [85, 80, 80, 75, 85],
+            "Cybersecurity Analyst": [90, 75, 95, 85, 80],
+            "Cloud/DevOps Engineer": [95, 90, 85, 80, 85],
+            "Mobile App Developer": [85, 80, 75, 80, 70]
         };
 
         const salaryTextMap = {
@@ -621,43 +778,49 @@
         const labels = ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5", "Year 6"];
         const career = "{{ career }}";
 
-        // Get theme-aware colors
-        const getChartColors = () => {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            return {
-                borderColor: '#6366f1',
-                backgroundColor: isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(99, 102, 241, 0.1)',
-                gridColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                textColor: isDark ? '#cbd5e1' : '#475569'
-            };
+        // Cyberpunk chart colors
+        const chartColors = {
+            cyan: '#00fff5',
+            purple: '#b400ff',
+            magenta: '#ff00ff',
+            green: '#00ff88',
+            pink: '#ff0080'
         };
 
-        let chartInstance = null;
+        let growthChartInstance = null;
+        let demandChartInstance = null;
 
-        const createChart = () => {
+        // Create Growth Chart
+        const createGrowthChart = () => {
             const ctx = document.getElementById('growthChart').getContext('2d');
-            const colors = getChartColors();
+            const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
 
-            if (chartInstance) {
-                chartInstance.destroy();
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, 'rgba(0, 255, 245, 0.3)');
+            gradient.addColorStop(1, 'rgba(180, 0, 255, 0.1)');
+
+            if (growthChartInstance) {
+                growthChartInstance.destroy();
             }
 
-            chartInstance = new Chart(ctx, {
+            growthChartInstance = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels,
                     datasets: [{
                         label: 'Salary (LPA)',
                         data: growthData[career] || [5, 10, 15, 20, 25, 30],
-                        borderColor: colors.borderColor,
-                        backgroundColor: colors.backgroundColor,
+                        borderColor: chartColors.cyan,
+                        backgroundColor: gradient,
                         fill: true,
                         tension: 0.4,
-                        pointRadius: 5,
-                        pointBackgroundColor: colors.borderColor,
-                        pointBorderColor: '#fff',
+                        pointRadius: 6,
+                        pointBackgroundColor: chartColors.cyan,
+                        pointBorderColor: isDark ? '#0a0a0f' : '#ffffff',
                         pointBorderWidth: 2,
-                        pointHoverRadius: 8
+                        pointHoverRadius: 10,
+                        pointHoverBackgroundColor: chartColors.magenta,
+                        borderWidth: 3
                     }]
                 },
                 options: {
@@ -669,9 +832,13 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            grid: { color: colors.gridColor },
+                            grid: {
+                                color: isDark ? 'rgba(0, 255, 245, 0.1)' : 'rgba(100, 100, 200, 0.1)',
+                                drawBorder: false
+                            },
                             ticks: {
-                                color: colors.textColor,
+                                color: isDark ? chartColors.cyan : '#4a4a6a',
+                                font: { family: "'Space Grotesk', sans-serif" },
                                 callback: function (value) {
                                     return '₹' + value + 'L';
                                 }
@@ -679,24 +846,115 @@
                         },
                         x: {
                             grid: { display: false },
-                            ticks: { color: colors.textColor }
+                            ticks: {
+                                color: isDark ? '#a0a0c0' : '#4a4a6a',
+                                font: { family: "'Space Grotesk', sans-serif" }
+                            }
                         }
                     }
                 }
             });
         };
 
+        // Create Industry Demand Radar Chart
+        const createDemandChart = () => {
+            const ctx = document.getElementById('demandChart').getContext('2d');
+            const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+
+            if (demandChartInstance) {
+                demandChartInstance.destroy();
+            }
+
+            demandChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Tech', 'Finance', 'Healthcare', 'E-commerce', 'Consulting'],
+                    datasets: [{
+                        label: 'Industry Demand',
+                        data: industryDemandData[career] || [80, 80, 80, 80, 80],
+                        borderColor: chartColors.cyan,
+                        backgroundColor: 'rgba(0, 255, 245, 0.2)',
+                        borderWidth: 2,
+                        pointBackgroundColor: chartColors.magenta,
+                        pointBorderColor: chartColors.cyan,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: isDark ? 'rgba(0, 255, 245, 0.2)' : 'rgba(100, 100, 200, 0.2)'
+                            },
+                            grid: {
+                                color: isDark ? 'rgba(0, 255, 245, 0.1)' : 'rgba(100, 100, 200, 0.1)'
+                            },
+                            pointLabels: {
+                                color: isDark ? '#a0a0c0' : '#4a4a6a',
+                                font: {
+                                    family: "'Rajdhani', sans-serif",
+                                    size: 11,
+                                    weight: '600'
+                                }
+                            },
+                            ticks: {
+                                display: false,
+                                beginAtZero: true,
+                                max: 100
+                            }
+                        }
+                    }
+                }
+            });
+        };
+
+        // Animate Skill Match Circle
+        const animateSkillMatch = () => {
+            const percentage = skillMatchData[career] || 75;
+            const circle = document.getElementById('skillMatchCircle');
+            const text = document.getElementById('skillMatchPercent');
+            const circumference = 314; // 2 * π * 50
+            const offset = circumference - (percentage / 100 * circumference);
+
+            setTimeout(() => {
+                circle.style.strokeDashoffset = offset;
+            }, 500);
+
+            // Animate counter
+            let current = 0;
+            const increment = percentage / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= percentage) {
+                    current = percentage;
+                    clearInterval(timer);
+                }
+                text.textContent = Math.round(current) + '%';
+            }, 30);
+        };
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            createChart();
+            createGrowthChart();
+            createDemandChart();
+            animateSkillMatch();
             document.getElementById('salaryRange').innerText = salaryTextMap[career] || '💰 ₹5–10 LPA → ₹30+ LPA';
         });
 
-        // Update chart on theme change
+        // Update charts on theme change
         const originalToggle = window.toggleTheme;
         window.toggleTheme = () => {
             originalToggle();
-            setTimeout(createChart, 100);
+            setTimeout(() => {
+                createGrowthChart();
+                createDemandChart();
+            }, 100);
         };
     </script>
 </body>
