@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # AI Career Path Simulator
 
@@ -66,3 +67,6 @@ AI Career Path Simulator is a Flask-based web application that leverages Generat
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+=======
+# career-path
+>>>>>>> 37a9f1a230cd949bde7f9a77c64e2cf807dce819
